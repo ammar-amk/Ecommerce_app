@@ -1,13 +1,22 @@
-type Book {
+type Product {
   id: ID!
-  title: String!
-  author: String!
+  name: String!
+  price: Float!
+  description: String
 }
 
 type Query {
-  books: [Book!]!
+  products: [Product!]!
+  product(id: ID!): Product
 }
 
 type Mutation {
-  addBook(title: String!, author: String!): Book!
+  createProduct(name: String!, price: Float!, description: String): Product!
+  updateProduct(id: ID!, name: String, price: Float, description: String): Product!
+  deleteProduct(id: ID!): Boolean!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
 }
